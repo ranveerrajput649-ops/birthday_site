@@ -37,9 +37,18 @@
     </div>
 
     <!-- 🎵 MUSIC -->
-  <audio autoplay loop>
+<audio id="music" loop>
     <source src="{{ url_for('static', filename='song.mp3') }}" type="audio/mp3">
 </audio>
+
+<script>
+window.onload = function() {
+    let music = document.getElementById("music");
+    music.play().catch(() => {
+        document.addEventListener("click", () => music.play(), { once: true });
+    });
+}
+</script>
 
     <!-- 🔥 SCRIPT -->
     <script>
