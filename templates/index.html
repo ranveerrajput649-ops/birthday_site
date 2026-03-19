@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Happy Birthday 🎉</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>🎉 HAPPY BIRTHDAY 🎉</h1>
+        <h2>Heny 🎂</h2>
+
+        <!-- 🎞️ SLIDESHOW -->
+        <div class="slideshow">
+            <img class="slide active" src="{{ url_for('static', filename='photo1.jpg') }}">
+            <img class="slide" src="{{ url_for('static', filename='photo2.jpg') }}">
+            <img class="slide" src="{{ url_for('static', filename='photo3.jpg') }}">
+        </div>
+
+        <!-- 🎂 MESSAGE (NOW ALWAYS VISIBLE) -->
+        <p id="message">
+            🎂 Happy Birthday! 🎉 <br><br>
+            May your day be filled with laughter, happiness, and unforgettable moments 💫<br>
+            Wishing you success, good health, and endless smiles always 😊<br><br>
+            🎈 Enjoy your special day to the fullest! 🎈
+        </p>
+
+        <!-- 📸 GALLERY -->
+        <div class="gallery">
+            <img src="{{ url_for('static', filename='photo1.jpg') }}">
+            <img src="{{ url_for('static', filename='photo2.jpg') }}">
+            <img src="{{ url_for('static', filename='photo3.jpg') }}">
+            <img src="{{ url_for('static', filename='photo4.jpg') }}">
+        </div>
+
+    </div>
+
+    <!-- 🎵 MUSIC -->
+    <audio id="music" autoplay loop>
+        <source src="{{ url_for('static', filename='song.mp3') }}" type="audio/mpeg">
+    </audio>
+
+    <!-- 🔥 SCRIPT -->
+    <script>
+
+    // 🎈 AUTO BALLOONS ON LOAD
+    function createBalloons() {
+        for (let i = 0; i < 15; i++) {
+            let balloon = document.createElement("div");
+            balloon.classList.add("balloon");
+
+            balloon.style.left = Math.random() * 100 + "vw";
+            balloon.style.backgroundColor = randomColor();
+
+            document.body.appendChild(balloon);
+        }
+    }
+
+    function randomColor() {
+        const colors = ["red", "yellow", "blue", "green", "pink", "orange", "purple"];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    // 🎞️ SLIDESHOW
+    window.onload = function () {
+        let slides = document.querySelectorAll(".slide");
+        let index = 0;
+
+        setInterval(() => {
+            slides[index].classList.remove("active");
+            index = (index + 1) % slides.length;
+            slides[index].classList.add("active");
+        }, 2000);
+
+        // 🎈 Start balloons automatically
+        createBalloons();
+
+        // 🎵 Try to play music (browser may restrict)
+        let music = document.getElementById("music");
+        music.play().catch(() => {
+            console.log("Autoplay blocked by browser");
+        });
+    };
+
+    </script>
+
+</body>
+</html>
